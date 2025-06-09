@@ -56,7 +56,7 @@ export const Card: React.FC<CardProps> = ({ id, title, description }) => {
       isDragging ? 'opacity-50' : 'opacity-100'
     } text-graphite max-w-[206px]`}
   >
-    <p className="font-semibold pr-6 truncate overflow-ellipsis whitespace-nowrap">{title}</p>
+    <p className="text-sm font-regular pr-6 truncate overflow-ellipsis whitespace-nowrap">{title}</p>
   </div> 
     </div>
   );

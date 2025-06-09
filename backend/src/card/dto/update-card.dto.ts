@@ -14,4 +14,3 @@ export class UpdateCardDto {
   @IsEnum(Column)
   column?: Column;
 }
-

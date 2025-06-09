@@ -23,7 +23,9 @@ describe('BoardController', () => {
             create: jest.fn().mockResolvedValue(mockBoard),
             findAll: jest.fn().mockResolvedValue([mockBoard]),
             findByHashId: jest.fn().mockResolvedValue(mockBoard),
-            update: jest.fn().mockResolvedValue({ ...mockBoard, name: 'Updated Board' }),
+            update: jest
+              .fn()
+              .mockResolvedValue({ ...mockBoard, name: 'Updated Board' }),
             delete: jest.fn().mockResolvedValue(mockBoard),
           },
         },

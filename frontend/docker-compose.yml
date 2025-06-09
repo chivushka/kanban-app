@@ -1,0 +1,8 @@
+services:
+  frontend:
+    build:
+      context: ./
+      args:
+        VITE_BACKEND_URL: "https://kanban-app-9vlx.onrender.com"
+    ports:
+      - "3000:80"

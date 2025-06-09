@@ -6,7 +6,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   app.enableCors({
-		origin: ['http://localhost:5151','http://192.168.50.207:5151'],
+		origin: ['http://localhost:3000','https://chivushka-kanban-app.onrender.com'],
 		credentials: true,
 	});
 

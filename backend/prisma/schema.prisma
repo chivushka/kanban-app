@@ -1,0 +1,36 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Column {
+  todo
+  in_progress
+  done
+}
+
+model Board {
+  id        String   @id @default(uuid())
+  name      String
+  hashId    String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  cards     Card[]
+}
+
+model Card {
+  id        String   @id @default(uuid())
+  title     String
+  description String
+  column    Column
+  order     Int
+  board     Board    @relation(fields: [boardId], references: [id], onDelete: Cascade)
+  boardId   String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+

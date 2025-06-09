@@ -14,7 +14,10 @@ import { Toaster } from 'react-hot-toast';
 import * as cardService from '@/shared/services/card.service';
 
 vi.mock('react-router-dom', async () => {
-  const actual = await vi.importActual<typeof import('react-router-dom')>('react-router-dom');
+  const actual =
+    await vi.importActual<typeof import('react-router-dom')>(
+      'react-router-dom',
+    );
   return {
     ...actual,
     useLocation: () => ({ state: { id: '1', name: 'Board One' } }),

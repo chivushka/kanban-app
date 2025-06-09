@@ -30,7 +30,8 @@ export const UpdateBoardModal: React.FC<UpdateBoardProps> = ({ id, name }) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!newName.trim()) return showToast('Board name should not be empty', 'info');
+    if (!newName.trim())
+      return showToast('Board name should not be empty', 'info');
     if (newName.trim() === (name ?? '').trim()) {
       closeModal();
       return;

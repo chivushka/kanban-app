@@ -40,7 +40,8 @@ export const UpdateCardModal: React.FC<UpdateCardProps> = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!newTitle.trim() || !newDescription.trim()) return showToast('Card details should not be empty', 'info');
+    if (!newTitle.trim() || !newDescription.trim())
+      return showToast('Card details should not be empty', 'info');
     updateCardMutation.mutate();
   };
 

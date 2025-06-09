@@ -34,7 +34,7 @@ const Input: React.FC<InputProps> = ({
   name,
   disabled = false,
   error,
-  required = false, 
+  required = false,
   extraInputStyles = '',
   extraWrapperStyles = '',
 }) => {
@@ -62,7 +62,7 @@ const Input: React.FC<InputProps> = ({
         placeholder={placeholder}
         disabled={disabled}
         className={inputClassNames}
-        required={required} 
+        required={required}
       />
       {error && <span className={errorTextStyles}>{error}</span>}
     </div>

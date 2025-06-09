@@ -48,16 +48,18 @@ export const Card: React.FC<CardProps> = ({ id, title, description }) => {
         onDelete={handleDelete}
       />
       <div
-    ref={setNodeRef}
-    style={style}
-    {...attributes}
-    {...listeners}
-    className={`p-4 mb-2 rounded-lg shadow-sm bg-sakura cursor-grab select-none ${
-      isDragging ? 'opacity-50' : 'opacity-100'
-    } text-graphite max-w-[206px]`}
-  >
-    <p className="text-sm font-regular pr-6 truncate overflow-ellipsis whitespace-nowrap">{title}</p>
-  </div> 
+        ref={setNodeRef}
+        style={style}
+        {...attributes}
+        {...listeners}
+        className={`p-4 mb-2 rounded-lg shadow-sm bg-sakura cursor-grab select-none ${
+          isDragging ? 'opacity-50' : 'opacity-100'
+        } text-graphite max-w-[206px]`}
+      >
+        <p className="text-sm font-regular pr-6 truncate overflow-ellipsis whitespace-nowrap">
+          {title}
+        </p>
+      </div>
     </div>
   );
 };

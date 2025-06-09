@@ -17,16 +17,16 @@ export class BoardService {
   }
 
   async findAll(dto: FindBoardDto) {
-  return this.prisma.board.findMany({
-    where: {
-      ...(dto.hashId && { hashId: dto.hashId }),
-      ...(dto.name && { name: { contains: dto.name, mode: 'insensitive' } }),
-    },
-    orderBy: {
-      createdAt: 'desc',
-    },
-  });
-}
+    return this.prisma.board.findMany({
+      where: {
+        ...(dto.hashId && { hashId: dto.hashId }),
+        ...(dto.name && { name: { contains: dto.name, mode: 'insensitive' } }),
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
+  }
 
   async findByHashId(hashId: string) {
     const board = await this.prisma.board.findUnique({

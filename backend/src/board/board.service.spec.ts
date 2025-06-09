@@ -56,16 +56,23 @@ describe('BoardService', () => {
     (prisma.board.findUnique as jest.Mock).mockResolvedValue(mockBoard);
     const result = await service.findByHashId('ivaBoard123456');
     expect(result).toEqual(mockBoard);
-    expect(prisma.board.findUnique).toHaveBeenCalledWith({ where: { hashId: 'ivaBoard123456' } });
+    expect(prisma.board.findUnique).toHaveBeenCalledWith({
+      where: { hashId: 'ivaBoard123456' },
+    });
   });
 
   it('should throw if board is not found by hashId', async () => {
     (prisma.board.findUnique as jest.Mock).mockResolvedValue(null);
-    await expect(service.findByHashId('notfound')).rejects.toThrow(NotFoundException);
+    await expect(service.findByHashId('notfound')).rejects.toThrow(
+      NotFoundException,
+    );
   });
 
   it('should update a board', async () => {
-    (prisma.board.update as jest.Mock).mockResolvedValue({ ...mockBoard, name: 'Updated Board' });
+    (prisma.board.update as jest.Mock).mockResolvedValue({
+      ...mockBoard,
+      name: 'Updated Board',
+    });
     const result = await service.update('1', { name: 'Updated Board' } as any);
     expect(result.name).toBe('Updated Board');
     expect(prisma.board.update).toHaveBeenCalled();

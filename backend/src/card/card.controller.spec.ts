@@ -24,9 +24,13 @@ describe('CardController', () => {
           useValue: {
             getCardsByBoard: jest.fn().mockResolvedValue([mockCard]),
             createCard: jest.fn().mockResolvedValue(mockCard),
-            updateCard: jest.fn().mockResolvedValue({ ...mockCard, title: 'Updated Card' }),
+            updateCard: jest
+              .fn()
+              .mockResolvedValue({ ...mockCard, title: 'Updated Card' }),
             deleteCard: jest.fn().mockResolvedValue(mockCard),
-            moveCard: jest.fn().mockResolvedValue({ ...mockCard, column: 'done', order: 1 }),
+            moveCard: jest
+              .fn()
+              .mockResolvedValue({ ...mockCard, column: 'done', order: 1 }),
           },
         },
       ],
@@ -43,7 +47,11 @@ describe('CardController', () => {
   });
 
   it('should create a card', async () => {
-    const dto = { title: 'Test Card', description: 'Test Description', column: 'todo' };
+    const dto = {
+      title: 'Test Card',
+      description: 'Test Description',
+      column: 'todo',
+    };
     const result = await controller.createCard('board123456', dto as any);
     expect(result).toEqual(mockCard);
     expect(service.createCard).toHaveBeenCalledWith('board123456', dto);

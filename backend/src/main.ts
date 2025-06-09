@@ -6,9 +6,12 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   app.enableCors({
-		origin: ['http://localhost:3000','https://chivushka-kanban-app.onrender.com'],
-		credentials: true,
-	});
+    origin: [
+      'http://localhost:3000',
+      'https://chivushka-kanban-app.onrender.com',
+    ],
+    credentials: true,
+  });
 
   app.useGlobalPipes(
     new ValidationPipe({
@@ -19,6 +22,5 @@ async function bootstrap() {
   );
 
   await app.listen(process.env.PORT ?? 8080, '0.0.0.0');
-
 }
 bootstrap();

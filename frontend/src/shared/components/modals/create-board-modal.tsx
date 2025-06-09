@@ -30,7 +30,8 @@ export const CreateBoardModal: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!name.trim()) return showToast('Board name should not be empty', 'info');
+    if (!name.trim())
+      return showToast('Board name should not be empty', 'info');
 
     createBoardMutation.mutate({ name });
   };

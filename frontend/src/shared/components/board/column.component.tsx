@@ -55,7 +55,9 @@ export const Column: React.FC<ColumnProps> = ({ id, title, cards }) => {
             ))
           ) : (
             <div className="flex-1 h-full min-h-[150px] flex items-center justify-center rounded border-2 border-dashed border-l_gray">
-              <p className="text-l_gray text-center">{id === 'todo' ? "Add by +\nor drop here" :"Drop here"}</p>
+              <p className="text-l_gray text-center">
+                {id === 'todo' ? 'Add by +\nor drop here' : 'Drop here'}
+              </p>
             </div>
           )}
         </div>

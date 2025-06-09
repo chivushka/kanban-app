@@ -35,7 +35,8 @@ export const CreateCardModal: React.FC<CreateCardProps> = ({ boardId }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!title.trim() || !description.trim()) return showToast('Card details should not be empty', 'info');
+    if (!title.trim() || !description.trim())
+      return showToast('Card details should not be empty', 'info');
     createCardMutation.mutate();
   };
 

@@ -1,0 +1,27 @@
+services:
+  db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456i
+      POSTGRES_DB: kanban-db
+    ports:
+      - "5450:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build: .
+    depends_on:
+      - db
+    environment:
+        PORT: 8080
+        DATABASE_URL: postgres://postgres:123456i@db:5432/kanban-db
+    ports:
+      - "8080:8080"
+    command: >
+      sh -c "npx prisma migrate deploy && npm run start:prod"
+
+volumes:
+  postgres_data:

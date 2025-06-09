@@ -9,13 +9,13 @@ import { QUERY_KEYS } from '@/shared/keys';
 import { useToastStore } from '@/store/toast.store';
 
 export const UpdateBoardModal: React.FC<UpdateBoardProps> = ({ id, name }) => {
-  const [boardNameInput, setBoardNameInput] = useState(name ?? '');
+  const [newName, setNewName] = useState(name ?? '');
   const { closeModal } = useModalStore();
   const queryClient = useQueryClient();
   const showToast = useToastStore((state) => state.showToast);
 
   const updateBoardMutation = useMutation({
-    mutationFn: () => boardService.update(id, { name: boardNameInput.trim() }),
+    mutationFn: () => boardService.update(id, { name: newName.trim() }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.BOARD] });
       closeModal();
@@ -30,8 +30,8 @@ export const UpdateBoardModal: React.FC<UpdateBoardProps> = ({ id, name }) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!boardNameInput.trim()) return;
-    if (boardNameInput.trim() === (name ?? '').trim()) {
+    if (!newName.trim()) return showToast('Board name should not be empty', 'info');
+    if (newName.trim() === (name ?? '').trim()) {
       closeModal();
       return;
     }
@@ -52,9 +52,10 @@ export const UpdateBoardModal: React.FC<UpdateBoardProps> = ({ id, name }) => {
           id="update-board-modal-name-input"
           label="Name"
           type="text"
-          value={boardNameInput}
-          onChange={(e) => setBoardNameInput(e.target.value)}
+          value={newName}
+          onChange={(e) => setNewName(e.target.value)}
           placeholder="Enter name"
+          required
         />
       </div>
 

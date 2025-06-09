@@ -14,8 +14,8 @@ export const UpdateCardModal: React.FC<UpdateCardProps> = ({
   title,
   description,
 }) => {
-  const [cardTitle, setCardTitle] = useState(title ?? '');
-  const [cardDescription, setCardDescription] = useState(description ?? '');
+  const [newTitle, setNewTitle] = useState(title ?? '');
+  const [newDescription, setNewDescription] = useState(description ?? '');
   const { closeModal } = useModalStore();
   const queryClient = useQueryClient();
   const showToast = useToastStore((state) => state.showToast);
@@ -24,8 +24,8 @@ export const UpdateCardModal: React.FC<UpdateCardProps> = ({
   const updateCardMutation = useMutation({
     mutationFn: () =>
       cardService.update(boardId, id, {
-        title: cardTitle.trim(),
-        description: cardDescription.trim(),
+        title: newTitle.trim(),
+        description: newDescription.trim(),
       }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.CARD, boardId] });
@@ -40,14 +40,7 @@ export const UpdateCardModal: React.FC<UpdateCardProps> = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!cardTitle.trim()) return;
-    if (
-      cardTitle.trim() === (title ?? '').trim() &&
-      cardDescription.trim() === (description ?? '').trim()
-    ) {
-      closeModal();
-      return;
-    }
+    if (!newTitle.trim() || !newDescription.trim()) return showToast('Card details should not be empty', 'info');
     updateCardMutation.mutate();
   };
 
@@ -64,17 +57,19 @@ export const UpdateCardModal: React.FC<UpdateCardProps> = ({
           id="title"
           label="Title"
           type="text"
-          value={cardTitle}
-          onChange={(e) => setCardTitle(e.target.value)}
+          value={newTitle}
+          onChange={(e) => setNewTitle(e.target.value)}
           placeholder="Enter title"
+          required
         />
         <Input
           id="description"
           label="Description"
           type="text"
-          value={cardDescription}
-          onChange={(e) => setCardDescription(e.target.value)}
+          value={newDescription}
+          onChange={(e) => setNewDescription(e.target.value)}
           placeholder="Enter description"
+          required
         />
       </div>
 

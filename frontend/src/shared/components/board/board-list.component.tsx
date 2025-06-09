@@ -6,8 +6,8 @@ import { useNavigate } from 'react-router-dom';
 const BoardList: React.FC = () => {
   const navigate = useNavigate();
   const { data: boards, isLoading, error } = useBoards();
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error loading boards: {error.message}</p>;
+  if (isLoading) return <p className='text-white'>Loading...</p>;
+  if (error) return <p className='text-white'>Error loading boards: {error.message}</p>;
   return (
     <div className="w-full max-w-[1200px] mx-auto">
       <ul className="space-y-2">

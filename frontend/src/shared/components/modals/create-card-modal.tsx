@@ -35,7 +35,7 @@ export const CreateCardModal: React.FC<CreateCardProps> = ({ boardId }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!title.trim()) return;
+    if (!title.trim() || !description.trim()) return showToast('Card details should not be empty', 'info');
     createCardMutation.mutate();
   };
 
@@ -55,6 +55,7 @@ export const CreateCardModal: React.FC<CreateCardProps> = ({ boardId }) => {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           placeholder="Enter title"
+          required
         />
         <Input
           id="description"
@@ -63,6 +64,7 @@ export const CreateCardModal: React.FC<CreateCardProps> = ({ boardId }) => {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           placeholder="Enter description"
+          required
         />
       </div>
 

@@ -3,6 +3,6 @@ services:
     build:
       context: ./
       args:
-        VITE_BACKEND_URL: 'https://kanban-app-9vlx.onrender.com'
+        VITE_BACKEND_URL: 'http://localhost:8080'
     ports:
       - '3000:80'
